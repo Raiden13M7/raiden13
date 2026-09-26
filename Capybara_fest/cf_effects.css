@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+/*
+   New Perspectives on HTML5 and CSS3, 8th Edition
+   Tutorial 4
+   Case Problem 2
+   
+   Design Styles for the Chupacabra Music Fest
+   Author: Raiden McCuyrd
+   Date:   09/14/2026
+   
+   Filename: cf_effects.css
+
+*/
+
+/* HTML Styles */
+html {
+   background: url("cf_back1.png") center / cover no-repeat fixed;
+}
+
+
+/* Body Styles */
+body {
+   background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Body Header Styles */
+body > header {
+   background-color: rgba(51, 51, 51, 0.5);
+}
+
+
+/* Aside Styles */
+section aside {
+   border: 10px double rgba(92, 42, 8, 0.3);
+   border-radius: 30px;
+}
+
+section aside h1 {
+   border-top-left-radius: 30px;
+   border-top-right-radius: 30px;
+}
+
+section#left,
+section#right {
+   perspective: 450px;
+}
+
+section#left aside {
+   transform: rotateY(25deg);
+}
+
+section#right aside {
+   transform: rotateY(-25deg);
+}
+
+
+/* Cube Styles */
+div#cube {
+   position: relative;
+   margin: 180px auto 150px;
+   width: 400px;
+   height: 400px;
+   perspective: 450px;
+}
+
+div.cube_face {
+   position: absolute;
+   width: 400px;
+   height: 400px;
+   overflow: hidden;
+}
+
+#cube_front {
+   transform: translateZ(-50px);
+}
+
+#cube_left {
+   transform: translateX(-200px) rotateY(90deg);
+}
+
+#cube_right {
+   transform: translateX(200px) rotateY(-90deg);
+}
+
+#cube_top {
+   transform: translateY(-200px) rotateX(-90deg);
+}
+
+#cube_bottom {
+   transform: translateY(200px) rotateX(90deg);
+}
+
+#cube_top p {
+   animation: topTextFade 3s ease-in-out infinite;
+}
+
+@keyframes topTextFade {
+   0% {
+      opacity: 0.25;
+   }
+
+   25% {
+      opacity: 0.85;
+   }
+
+   50% {
+      opacity: 1;
+   }
+
+   75% {
+      opacity: 0.4;
+   }
+
+   100% {
+      opacity: 0.9;
+   }
+}
+
+#cube_bottom h1 {
+   animation: bottomTextGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes bottomTextGlow {
+   0% {
+      color: #ffffff;
+      filter: brightness(0.8);
+
+      text-shadow:
+         0 0 5px #ffffff,
+         0 0 10px #66ccff;
+   }
+
+   50% {
+      color: #66ccff;
+      filter: brightness(1.1);
+
+      text-shadow:
+         0 0 8px #ffffff,
+         0 0 18px #3399ff,
+         0 0 30px #0066ff;
+   }
+
+   100% {
+      color: #ffffff;
+      filter: brightness(1.4);
+
+      text-shadow:
+         0 0 12px #ffffff,
+         0 0 25px #66ccff,
+         0 0 45px #0088ff;
+   }
+}
+
+
+/* Accessibility: respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+
+   #cube_top p,
+   #cube_bottom h1 {
+      animation: none;
+   }
+}
